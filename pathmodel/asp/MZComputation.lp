@@ -1,7 +1,5 @@
 %*
-This script will create the reference reaction site.
-To do this it compares links and atoms between two molecules that are implied in a reaction.
-When it finds difference, the script will extract the links and atoms and write the result in a file.
+MZ Computation script
 *%
 
 %*
@@ -11,9 +9,16 @@ valence(Atom type, Number of valence)
 valence(carb, 4). valence(nitr, 3). valence(oxyg, 2). valence(phos, 5).
 
 % Symmetric bonds.
+
+%*
+Si il y a une liaison pour une Molecule (A) donnée et un type de liaison (B) donné entre un 1er atome (C) et un second atome (D) alors on crée une
+liaison 2 entre C et D.
+Et si il y a une liaison entre D et C alors on crée une liaison 2 entre C et D aussi.
+*%
 bond2(A,B,C,D):- bond(A,B,C,D).
 bond2(A,B,C,D):- bond(A,B,D,C).
 
+% Si un input est déclaré pour une molécule (désignation de atom(Mol,_,_)), on en crée un objet metabolite à partir de son nom
 metabolite(MoleculeName):- atom(MoleculeName,_,_).
 
 %* Definition of atomic masses
@@ -21,6 +26,7 @@ metabolite(MoleculeName):- atom(MoleculeName,_,_).
 *%
 
 %*
+Masses des principaux atomes
 m_hydr = 1.0074, m_carb = 12.0107,  m_oxyg = 15.9994 ,  m_nitr=14.0067, m_phos = 30,9738.
 
 Compute bonds between each atoms C,N,O, and add as many H as nb_H = valence (atom) - nb_bond(atom), with valence(oxyg)=2, valence(nitr)=3, valence(carb)=4 and valence(phos)=5(?).
