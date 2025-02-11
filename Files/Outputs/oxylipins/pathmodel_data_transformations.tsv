@@ -1,0 +1,5 @@
+reaction_id	reactant_sbustructure	product_substructure
+epoxidation_L	[('22', 'oxyg'), [('double', '11', '12')], [('single', '21', '22')]]	[('single', '11', '12'), [('single', '12', '21')]]
+lipoxygenase_rxn	[('double', '12', '13'), [('single', '11', '12')]]	[('21', 'oxyg'), [('22', 'oxyg')], [('double', '11', '12')], [('single', '12', '13')], [('single', '13', '21')], [('single', '21', '22')]]
+epoxidation_E	[('double', '10', '11'), [('single', '21', '22')]]	[('single', '10', '11'), [('single', '10', '21')], [('single', '11', '22')]]
+rxn_8495	[('double', '9', '10'), [('single', '10', '11')]]	[('21', 'oxyg'), [('22', 'oxyg')], [('double', '10', '11')], [('single', '21', '22')], [('single', '9', '10')], [('single', '9', '21')]]

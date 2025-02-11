@@ -1,0 +1,2 @@
+reaction_id	reactant_sbustructure	product_substructure
+reduction	[('single', '2', '4')]	[('double', '2', '4')]

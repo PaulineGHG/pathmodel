@@ -1,0 +1,9 @@
+infer_step	new_reaction	reactant	product
+4	rxn_21831	"""31-norcycloartenone"""	"""4α,14α-dimethyl-5α-cholesta-8,24-dien-3β-ol"""
+4	rxn_3_OXOSTEROID_1_DEHYDROGENASE_RXN	"""31-norcycloartenone"""	"""Δ1-2,31-norcycloartenone"""
+5	rxn_21833	"""31-norcycloartenol"""	"""4α-hydroxymethyl-14α-methyl-5α-cholesta-8,24-dien-3β-ol"""
+5	rxn_11876	"""4α,14α-dimethyl-5α-cholesta-8,24-dien-3β-ol"""	"""31-norcycloartenol"""
+5	rxn_21833	"""4α,14α-dimethyl-5α-cholesta-8,24-dien-3β-ol"""	"""4α-hydroxymethyl-14α-methyl-5α-cholesta-8,24-dien-3β-ol"""
+5	rxn_774	"""Δ1-2,31-norcycloartenone"""	"""23-hydroxy-Δ1-2-31-norcycloartenone"""
+6	rxn_21834	"""4α-hydroxymethyl-14α-methyl-5α-cholesta-8,24-dien-3β-ol"""	"""4α-formyl-14α-methyl-5α-cholesta-8,24-dien-3β-ol"""
+7	rxn66_28	"""mozukulin A"""	"""mozukulin B"""

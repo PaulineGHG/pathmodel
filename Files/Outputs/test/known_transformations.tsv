@@ -1,0 +1,3 @@
+reaction_name	molecule_A	molecule_B	bond_type	atom_1	atom_2
+reduction	"""molecule_1"""	"""molecule_2"""	single	2	4
+reduction	"""molecule_2"""	"""molecule_1"""	double	2	4

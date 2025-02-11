@@ -1,0 +1,53 @@
+---
+Molecules :
+  # METACYC : LINOLEIC_ACID / CHEBI:30245
+  linoleate : 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'
+  # METACYC :  13-HYDROPEROXYOCTADECA-911-DIENOATE / CHEBI:57466
+  13SHPODE : 'CCCCC[C@@H](/C=C/C=C\CCCCCCCC(=O)[O-])OO'
+  # CHEBI:165794
+  12-13-EpOME : 'O1C(C1C/C=C/CCCCCCCC(O)=O)CCCCC'
+  # MANUAL DRAWING
+  12-hydroxy-13-glutation-OME : 'CCCCCC(SCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(O)C/C=C/CCCCCCCC(=O)O'
+  # METACYC :  CPD-8677 / CHEBI:60955
+  9SHPODE : 'CCCCC\C=C/C=C/[C@H](CCCCCCCC([O-])=O)OO'
+  # CHEBI:187465
+  9-10-epoxy-11-hydroxy-12-octdecenoic : 'O1C(C1C(O)/C=C/CCCCC)CCCCCCCC(O)=O'
+  # METACYC :  CPD-8892 / CHEBI:193571
+  leukotrieneA4 : 'CCCCC\C=C/C\C=C/C=C/C=C/[C@@H]1(O[C@@H]1CCCC(=O)[O-])'
+  # METACYC : LEUKOTRIENE-C4 / CHEBI:57973
+  leukotrieneC4 : 'CCCCC\C=C/C\C=C/C=C/C=C/[C@@H](SC[C@@H](C(=O)NCC([O-])=O)NC(CC[C@@H](C(=O)[O-])[NH3+])=O)[C@H](CCCC([O-])=O)O'
+
+Domain :
+  d1 : 'SMILES'
+
+Reactions :
+  # METACYC : LIPOXYGENASE-RXN / EC : 1.13.11.12
+  lipoxygenase_rxn : [linoleate, 13SHPODE]
+  # ?
+  epoxidation_L : [13SHPODE, 12-13-EpOME]
+  # METACYC : RXN-8495 / EC : 1.13.11.58
+  rxn_8495 : [linoleate, 9SHPODE]
+  # ?
+  epoxidation_E : [9SHPODE, 9-10-epoxy-11-hydroxy-12-octdecenoic]
+  # METACYC : LEUKOTRIENE-C4-SYNTHASE-RXN / EC : 4.4.1.20
+  leukotriene-c4-synthase-rxn : [leukotrieneA4, leukotrieneC4]
+
+
+Pathways :
+
+Species :
+  Laminaria digitata :
+    - lipoxygenase_rxn
+    - epoxidation_L
+  Ectocarpus sp7 :
+    - rxn_8495
+    - epoxidation_E
+  Mammals :
+    - leukotriene-c4-synthase-rxn
+
+MZ :
+
+Absent :
+
+Source : linoleate
+Target : 12-hydroxy-13-glutation-OME
