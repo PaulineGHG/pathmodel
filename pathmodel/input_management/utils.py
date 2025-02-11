@@ -63,6 +63,10 @@ def mol_to_asp(mol_name, mol_code, encoding=INCHI):
     return asp_val
 
 
+def rxn_to_asp(rxn_name, reactant, product):
+    return f'reaction({rxn_name},{reactant},{product}).'
+
+
 def smiles_to_2d_structure(smiles, output):
     if type(smiles) == str:
         mol = get_canonical_mol(smiles)

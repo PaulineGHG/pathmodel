@@ -285,3 +285,6 @@ bond("leukotrieneC4",single,39,40).
 bond("leukotrieneC4",single,40,41).
 bond("leukotrieneC4",double,41,42).
 bond("leukotrieneC4",single,41,43).
+%*\REACTIONS
+=========
+*%

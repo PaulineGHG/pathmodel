@@ -34,8 +34,9 @@ def load_from_yaml(input_file, draw=False):
         # REACTIONS
         f.write('%*\REACTIONS\n=========\n*%\n')
         for rxn, react in data[RXN].items():
-            pass
-    
+            f.write(f'\n%{rxn}\n')
+            f.write(rxn_to_asp(rxn, react[0], react[1]))
+            print()
 
 
 INPUT_YML = '/home/phamongi/Documents/Dev/pathmodel/Files/Inputs/oxylipins_input.yaml'
