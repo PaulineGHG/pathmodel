@@ -18,7 +18,7 @@ Molecules :
   leukotrieneC4 : 'CCCCC\C=C/C\C=C/C=C/C=C/[C@@H](SC[C@@H](C(=O)NCC([O-])=O)NC(CC[C@@H](C(=O)[O-])[NH3+])=O)[C@H](CCCC([O-])=O)O'
 
 Domain :
-  d1 : 'SMILES'
+  d1 : 'O1CC1C'
 
 Reactions :
   # METACYC : LIPOXYGENASE-RXN / EC : 1.13.11.12

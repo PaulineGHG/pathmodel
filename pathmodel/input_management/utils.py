@@ -35,8 +35,13 @@ def simplify_list_with_index(lst):
     return result
 
 
-def mol_to_asp(mol_name, mol_code, encoding=INCHI):
+def mol_to_asp(mol_name, mol_code, encoding=INCHI, domain=False):
     mol_name = mol_name.replace(' ', '_')
+    atom_str = 'atom'
+    bond_str = 'bond'
+    if domain:
+        atom_str += 'Domain'
+        bond_str += 'Domain'
     if encoding == SMILES:
         mol = get_canonical_mol(mol_code)
     elif encoding == INCHI:
@@ -52,11 +57,11 @@ def mol_to_asp(mol_name, mol_code, encoding=INCHI):
     for a, pos_lst in atom_pos.items():
         for pos in pos_lst:
             if pos[0] == pos[1]:
-                asp_val.append(f'atom("{mol_name}",{pos[0]},{ATOM_CORRESP[a]}).')
+                asp_val.append(f'{atom_str}("{mol_name}",{pos[0]},{ATOM_CORRESP[a]}).')
             else:
-                asp_val.append(f'atom("{mol_name}",{pos[0]}..{pos[1]},{ATOM_CORRESP[a]}).')
+                asp_val.append(f'{atom_str}("{mol_name}",{pos[0]}..{pos[1]},{ATOM_CORRESP[a]}).')
     for b in mol.GetBonds():
-        asp_val.append(f'bond("{mol_name}",'
+        asp_val.append(f'{bond_str}("{mol_name}",'
                        f'{str(b.GetBondType()).lower()},'
                        f'{b.GetBeginAtom().GetIdx() + 1},'
                        f'{b.GetEndAtom().GetIdx() + 1}).')
@@ -64,7 +69,7 @@ def mol_to_asp(mol_name, mol_code, encoding=INCHI):
 
 
 def rxn_to_asp(rxn_name, reactant, product):
-    return f'reaction({rxn_name},{reactant},{product}).'
+    return f'reaction({rxn_name},"{reactant}","{product}").'
 
 
 def smiles_to_2d_structure(smiles, output):

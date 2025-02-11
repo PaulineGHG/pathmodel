@@ -1,6 +1,6 @@
 %*
 MOLECULES
-=========
+====================================================================================================
 *%
 
 %linoleate
@@ -285,6 +285,45 @@ bond("leukotrieneC4",single,39,40).
 bond("leukotrieneC4",single,40,41).
 bond("leukotrieneC4",double,41,42).
 bond("leukotrieneC4",single,41,43).
-%*\REACTIONS
-=========
+
+%*
+SHARED DOMAIN
+====================================================================================================
 *%
+atomDomain("d1",1..3,carb).
+atomDomain("d1",4,oxyg).
+bondDomain("d1",single,1,2).
+bondDomain("d1",single,2,3).
+bondDomain("d1",single,3,4).
+bondDomain("d1",single,4,2).
+
+%*
+REACTIONS
+====================================================================================================
+*%
+
+%lipoxygenase_rxn
+reaction(lipoxygenase_rxn,"linoleate","13SHPODE").
+
+%epoxidation_L
+reaction(epoxidation_L,"13SHPODE","12-13-EpOME").
+
+%rxn_8495
+reaction(rxn_8495,"linoleate","9SHPODE").
+
+%epoxidation_E
+reaction(epoxidation_E,"9SHPODE","9-10-epoxy-11-hydroxy-12-octdecenoic").
+
+%leukotriene-c4-synthase-rxn
+reaction(leukotriene-c4-synthase-rxn,"leukotrieneA4","leukotrieneC4").
+
+%*
+SOURCE - GOAL
+====================================================================================================
+*%
+
+%SOURCE
+source("linoleate").
+
+%GOAL
+goal(pathway("linoleate","12-hydroxy-13-glutation-OME"))
