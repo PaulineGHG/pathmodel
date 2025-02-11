@@ -33,9 +33,16 @@ bond2(A,B,C,D):- bond(A,B,D,C).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 *%
 
+% Pour chaque reaction, on crée un type de réaction (reactionType) à partir de son nom
 reactionType(TypeOfReaction):- reaction(TypeOfReaction,_,_).
+
+% Pour chaque reaction, on crée metabolite d'output (output_metabolite) à partir de son produit
 output_metabolite(MoleculeName):- reaction(_,_,MoleculeName).
+
+% Pour chaque reaction, on crée metabolite d'input (input_metabolite) à partir de son reactant
 input_metabolite(MoleculeName):- atom(MoleculeName,_,_); not output_metabolite(MoleculeName).
+
+% Définition d'un objet metabolite à partir du nom d'une molécule déclarée en input
 metabolite(MoleculeName):- atom(MoleculeName,_,_).
 
 #program step(t).
