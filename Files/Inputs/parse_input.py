@@ -1,7 +1,7 @@
 import yaml
 import mols2grid
 
-from utils import *
+from pathmodel.input_management.utils import *
 
 MOL = 'Molecules'
 DOM = 'Domain'
