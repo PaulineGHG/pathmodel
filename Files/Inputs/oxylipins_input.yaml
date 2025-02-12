@@ -1,7 +1,14 @@
 ---
 Molecules :
-  # METACYC : LINOLEIC_ACID / CHEBI:30245
-  linoleate : 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'
+
+  linoleate :
+    SMILES : 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'
+    ROLE : 'SRC'
+    SOURCE TYPE : 'BDD'
+    LINKS :
+      - 'METACYC:LINOLEIC_ACID'
+      - 'CHEBI:30245'
+
   # METACYC :  13-HYDROPEROXYOCTADECA-911-DIENOATE / CHEBI:57466
   13SHPODE : 'CCCCC[C@@H](/C=C/C=C\CCCCCCCC(=O)[O-])OO'
   # CHEBI:165794
@@ -32,8 +39,6 @@ Reactions :
   # METACYC : LEUKOTRIENE-C4-SYNTHASE-RXN / EC : 4.4.1.20
   leukotriene-c4-synthase-rxn : [leukotrieneA4, leukotrieneC4]
 
-
-Pathways :
 
 Species :
   Laminaria digitata :

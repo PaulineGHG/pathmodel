@@ -1,0 +1,5 @@
+Molecule name	SMILE	Domain	Absent	Source	Target	Reactant of	Product of	Source type	Source links
+linoleate	CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O	0	0	1	0	lipoxygenase_rxn; rxn_8495		BDD	METACYC:LINOLEIC_ACID; CHEBI:30245
+13SHPODE	CCCCC[C@@H](/C=C/C=C\CCCCCCCC(=O)[O-])OO	0	0	0	0	epoxidation_L	lipoxygenase_rxn	BDD	METACYC:13-HYDROPEROXYOCTADECA-911-DIENOATE; CHEBI:57466
+12-13-EpOME	O1C(C1C/C=C/CCCCCCCC(O)=O)CCCCC	0	0	0	0		epoxidation_L	BDD	CHEBI:165794
+12-hydroxy-13-glutation-OME	CCCCCC(SCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(O)C/C=C/CCCCCCCC(=O)O	0	0	0	1			MANUAL

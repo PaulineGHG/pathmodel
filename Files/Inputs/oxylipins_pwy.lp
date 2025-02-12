@@ -98,6 +98,7 @@ bond("leukotrieneC4",single,5,23). bond("leukotrieneC4",single,6,24).
 
 %Shared domain.
 
+% C18 fatty acid
 atomDomain(fatty_acid,1..18,carb). atomDomain(fatty_acid,19..20,oxyg).
 bondDomain(fatty_acid,single,1,2). bondDomain(fatty_acid,single,2,3). bondDomain(fatty_acid,single,3,4).
 bondDomain(fatty_acid,single,4,5). bondDomain(fatty_acid,single,5,6). bondDomain(fatty_acid,single,6,7).
