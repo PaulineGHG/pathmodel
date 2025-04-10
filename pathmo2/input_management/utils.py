@@ -5,10 +5,10 @@ from rdkit.Chem import rdChemReactions
 
 SMILES = 'SMILES'
 INCHI = 'InChI'
-ATOM_CORRESP = {'C': 'carb',
-                'O': 'oxyg',
-                'S': 'sulf',
-                'N': 'nitr'}
+ATOM_CORRESP = {'C': 'c',
+                'O': 'o',
+                'S': 's',
+                'N': 'n'}
 
 
 def get_canonical_mol(smiles):

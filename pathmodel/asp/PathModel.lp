@@ -5,11 +5,10 @@ Search of metabolic pathways
 allowing to reach  output metabolites from a set of input metabolites
 *%
 
-#script (lua)
+#script (python)
 
-function concat(reaction_name, mz)
-	return "Prediction_" .. tostring(mz) .. "_" .. tostring(reaction_name)
-end
+def concat(reaction_name, mz):
+	return f'Prediction_{mz}_{reaction_name}'
 
 #end.
 

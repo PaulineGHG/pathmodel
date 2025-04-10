@@ -1,20 +1,35 @@
 ---
-Molecules :
+Chemicals :
 
-  linoleate :
-    SMILES : 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'
-    ROLE : 'SRC'
-    SOURCE TYPE : 'BDD'
-    LINKS :
-      - 'METACYC:LINOLEIC_ACID'
-      - 'CHEBI:30245'
+  Source :
+    linoleate :
+      SMILES : 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'
+      SOURCE TYPE : 'BDD'
+      LINKS :
+        - 'METACYC:LINOLEIC_ACID'
+        - 'CHEBI:30245'
 
-  # METACYC :  13-HYDROPEROXYOCTADECA-911-DIENOATE / CHEBI:57466
-  13SHPODE : 'CCCCC[C@@H](/C=C/C=C\CCCCCCCC(=O)[O-])OO'
-  # CHEBI:165794
-  12-13-EpOME : 'O1C(C1C/C=C/CCCCCCCC(O)=O)CCCCC'
-  # MANUAL DRAWING
-  12-hydroxy-13-glutation-OME : 'CCCCCC(SCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(O)C/C=C/CCCCCCCC(=O)O'
+  Target :
+    12-hydroxy-13-glutation-OME :
+      SMILES: 'CCCCCC(SCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(O)C/C=C/CCCCCCCC(=O)O'
+      SOURCE TYPE: 'MANUAL'
+      LINKS:
+
+  Environment :
+    13SHPODE :
+      SMILES : 'CCCCC[C@@H](/C=C/C=C\CCCCCCCC(=O)[O-])OO'
+      SOURCE TYPE: 'BDD'
+      LINKS:
+        - 'METACYC:13-HYDROPEROXYOCTADECA-911-DIENOATE'
+        - 'CHEBI:57466'
+
+    12-13-EpOME :
+      SMILES : 'O1C(C1C/C=C/CCCCCCCC(O)=O)CCCCC'
+      SOURCE TYPE: 'BDD'
+      LINKS:
+        - 'CHEBI:165794'
+
+
   # METACYC :  CPD-8677 / CHEBI:60955
   9SHPODE : 'CCCCC\C=C/C=C/[C@H](CCCCCCCC([O-])=O)OO'
   # CHEBI:187465
