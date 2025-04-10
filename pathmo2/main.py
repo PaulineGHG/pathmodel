@@ -1,25 +1,24 @@
 import os
 import csv
 import clyngor
+from pathmo2.input_management.parse_input import *
 
 
 ROOT = os.path.dirname(__file__)
 
 
-def reaction_creation(input_file, output_folder):
-    '''
+def generate_transformations(run_path):
+    """
     Detect reaction sites by comparing molecules implied in a reaction.
     Return the result as a string.
 
-    Args:
-        input_file (str): path to the input data file
-        output_folder (str): path to the output folder
-    Returns:
-        reaction_result (str): ASP answer as str
-    '''
+    """
     print('~~~~~Creation of Reaction~~~~~')
     reaction_site_extraction_script = os.path.join(*[ROOT, 'asp', 'ReactionSiteExtraction.lp'])
+    input_file = os.path.join(run_path, INPUT_DIR, LP_INPUT)
+
     reaction_solver = clyngor.solve([input_file, reaction_site_extraction_script], use_clingo_module=False)
+    print(reaction_solver)
     reaction_results = []
     transformation_reactants = {}
     transformation_products = {}
@@ -40,8 +39,11 @@ def reaction_creation(input_file, output_folder):
                     transformation_products[reaction_id] = [substructures]
                 else:
                     transformation_products[reaction_id].append([substructures])
+    print(transformation_reactants)
+    print(transformation_products)
 
     reactions = set(reactions)
+    output_folder = os.path.join(run_path, OUTPUT_DIR)
     pathmodel_output_transformation_path = os.path.join(output_folder, 'pathmodel_data_transformations.tsv')
     with open(pathmodel_output_transformation_path, 'w') as transformation_file:
         csvwriter = csv.writer(transformation_file, delimiter = '\t')
@@ -61,3 +63,12 @@ def reaction_creation(input_file, output_folder):
     reaction_result = '\n'.join([atom+'.' for atom in reaction_results])
 
     return reaction_result
+
+
+# ==================================================================================================
+
+RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
+RUN_NAME = 'Oxylipins'
+
+generate_lp_input(os.path.join(RUN_PATH, RUN_NAME), True)
+generate_transformations(os.path.join(RUN_PATH, RUN_NAME))

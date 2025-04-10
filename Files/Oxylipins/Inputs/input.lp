@@ -26,66 +26,66 @@ bond("linoleate",single,17,18).
 bond("linoleate",double,18,19).
 bond("linoleate",single,18,20).
 
-% 12-hydroxy-13-glutation-OME
-atom("12-hydroxy-13-glutation-OME",1..6,c).
-atom("12-hydroxy-13-glutation-OME",8..9,c).
-atom("12-hydroxy-13-glutation-OME",11,c).
-atom("12-hydroxy-13-glutation-OME",13..15,c).
-atom("12-hydroxy-13-glutation-OME",17,c).
-atom("12-hydroxy-13-glutation-OME",20,c).
-atom("12-hydroxy-13-glutation-OME",23..24,c).
-atom("12-hydroxy-13-glutation-OME",27,c).
-atom("12-hydroxy-13-glutation-OME",29..39,c).
-atom("12-hydroxy-13-glutation-OME",7,s).
-atom("12-hydroxy-13-glutation-OME",10,n).
-atom("12-hydroxy-13-glutation-OME",16,n).
-atom("12-hydroxy-13-glutation-OME",22,n).
-atom("12-hydroxy-13-glutation-OME",12,o).
-atom("12-hydroxy-13-glutation-OME",18..19,o).
-atom("12-hydroxy-13-glutation-OME",21,o).
-atom("12-hydroxy-13-glutation-OME",25..26,o).
-atom("12-hydroxy-13-glutation-OME",28,o).
-atom("12-hydroxy-13-glutation-OME",40..41,o).
-bond("12-hydroxy-13-glutation-OME",single,1,2).
-bond("12-hydroxy-13-glutation-OME",single,2,3).
-bond("12-hydroxy-13-glutation-OME",single,3,4).
-bond("12-hydroxy-13-glutation-OME",single,4,5).
-bond("12-hydroxy-13-glutation-OME",single,5,6).
-bond("12-hydroxy-13-glutation-OME",single,6,7).
-bond("12-hydroxy-13-glutation-OME",single,7,8).
-bond("12-hydroxy-13-glutation-OME",single,8,9).
-bond("12-hydroxy-13-glutation-OME",single,9,10).
-bond("12-hydroxy-13-glutation-OME",single,10,11).
-bond("12-hydroxy-13-glutation-OME",double,11,12).
-bond("12-hydroxy-13-glutation-OME",single,11,13).
-bond("12-hydroxy-13-glutation-OME",single,13,14).
-bond("12-hydroxy-13-glutation-OME",single,14,15).
-bond("12-hydroxy-13-glutation-OME",single,15,16).
-bond("12-hydroxy-13-glutation-OME",single,15,17).
-bond("12-hydroxy-13-glutation-OME",double,17,18).
-bond("12-hydroxy-13-glutation-OME",single,17,19).
-bond("12-hydroxy-13-glutation-OME",single,9,20).
-bond("12-hydroxy-13-glutation-OME",double,20,21).
-bond("12-hydroxy-13-glutation-OME",single,20,22).
-bond("12-hydroxy-13-glutation-OME",single,22,23).
-bond("12-hydroxy-13-glutation-OME",single,23,24).
-bond("12-hydroxy-13-glutation-OME",double,24,25).
-bond("12-hydroxy-13-glutation-OME",single,24,26).
-bond("12-hydroxy-13-glutation-OME",single,6,27).
-bond("12-hydroxy-13-glutation-OME",single,27,28).
-bond("12-hydroxy-13-glutation-OME",single,27,29).
-bond("12-hydroxy-13-glutation-OME",single,29,30).
-bond("12-hydroxy-13-glutation-OME",double,30,31).
-bond("12-hydroxy-13-glutation-OME",single,31,32).
-bond("12-hydroxy-13-glutation-OME",single,32,33).
-bond("12-hydroxy-13-glutation-OME",single,33,34).
-bond("12-hydroxy-13-glutation-OME",single,34,35).
-bond("12-hydroxy-13-glutation-OME",single,35,36).
-bond("12-hydroxy-13-glutation-OME",single,36,37).
-bond("12-hydroxy-13-glutation-OME",single,37,38).
-bond("12-hydroxy-13-glutation-OME",single,38,39).
-bond("12-hydroxy-13-glutation-OME",double,39,40).
-bond("12-hydroxy-13-glutation-OME",single,39,41).
+% 12_hydroxy_13_glutation_OME
+atom("12_hydroxy_13_glutation_OME",1..6,c).
+atom("12_hydroxy_13_glutation_OME",8..9,c).
+atom("12_hydroxy_13_glutation_OME",11,c).
+atom("12_hydroxy_13_glutation_OME",13..15,c).
+atom("12_hydroxy_13_glutation_OME",17,c).
+atom("12_hydroxy_13_glutation_OME",20,c).
+atom("12_hydroxy_13_glutation_OME",23..24,c).
+atom("12_hydroxy_13_glutation_OME",27,c).
+atom("12_hydroxy_13_glutation_OME",29..39,c).
+atom("12_hydroxy_13_glutation_OME",7,s).
+atom("12_hydroxy_13_glutation_OME",10,n).
+atom("12_hydroxy_13_glutation_OME",16,n).
+atom("12_hydroxy_13_glutation_OME",22,n).
+atom("12_hydroxy_13_glutation_OME",12,o).
+atom("12_hydroxy_13_glutation_OME",18..19,o).
+atom("12_hydroxy_13_glutation_OME",21,o).
+atom("12_hydroxy_13_glutation_OME",25..26,o).
+atom("12_hydroxy_13_glutation_OME",28,o).
+atom("12_hydroxy_13_glutation_OME",40..41,o).
+bond("12_hydroxy_13_glutation_OME",single,1,2).
+bond("12_hydroxy_13_glutation_OME",single,2,3).
+bond("12_hydroxy_13_glutation_OME",single,3,4).
+bond("12_hydroxy_13_glutation_OME",single,4,5).
+bond("12_hydroxy_13_glutation_OME",single,5,6).
+bond("12_hydroxy_13_glutation_OME",single,6,7).
+bond("12_hydroxy_13_glutation_OME",single,7,8).
+bond("12_hydroxy_13_glutation_OME",single,8,9).
+bond("12_hydroxy_13_glutation_OME",single,9,10).
+bond("12_hydroxy_13_glutation_OME",single,10,11).
+bond("12_hydroxy_13_glutation_OME",double,11,12).
+bond("12_hydroxy_13_glutation_OME",single,11,13).
+bond("12_hydroxy_13_glutation_OME",single,13,14).
+bond("12_hydroxy_13_glutation_OME",single,14,15).
+bond("12_hydroxy_13_glutation_OME",single,15,16).
+bond("12_hydroxy_13_glutation_OME",single,15,17).
+bond("12_hydroxy_13_glutation_OME",double,17,18).
+bond("12_hydroxy_13_glutation_OME",single,17,19).
+bond("12_hydroxy_13_glutation_OME",single,9,20).
+bond("12_hydroxy_13_glutation_OME",double,20,21).
+bond("12_hydroxy_13_glutation_OME",single,20,22).
+bond("12_hydroxy_13_glutation_OME",single,22,23).
+bond("12_hydroxy_13_glutation_OME",single,23,24).
+bond("12_hydroxy_13_glutation_OME",double,24,25).
+bond("12_hydroxy_13_glutation_OME",single,24,26).
+bond("12_hydroxy_13_glutation_OME",single,6,27).
+bond("12_hydroxy_13_glutation_OME",single,27,28).
+bond("12_hydroxy_13_glutation_OME",single,27,29).
+bond("12_hydroxy_13_glutation_OME",single,29,30).
+bond("12_hydroxy_13_glutation_OME",double,30,31).
+bond("12_hydroxy_13_glutation_OME",single,31,32).
+bond("12_hydroxy_13_glutation_OME",single,32,33).
+bond("12_hydroxy_13_glutation_OME",single,33,34).
+bond("12_hydroxy_13_glutation_OME",single,34,35).
+bond("12_hydroxy_13_glutation_OME",single,35,36).
+bond("12_hydroxy_13_glutation_OME",single,36,37).
+bond("12_hydroxy_13_glutation_OME",single,37,38).
+bond("12_hydroxy_13_glutation_OME",single,38,39).
+bond("12_hydroxy_13_glutation_OME",double,39,40).
+bond("12_hydroxy_13_glutation_OME",single,39,41).
 
 % 13SHPODE
 atom("13SHPODE",1..18,c).
@@ -112,32 +112,32 @@ bond("13SHPODE",single,18,20).
 bond("13SHPODE",single,6,21).
 bond("13SHPODE",single,21,22).
 
-% 12-13-EpOME
-atom("12-13-EpOME",1..6,c).
-atom("12-13-EpOME",8..19,c).
-atom("12-13-EpOME",7,o).
-atom("12-13-EpOME",20..21,o).
-bond("12-13-EpOME",single,1,2).
-bond("12-13-EpOME",single,2,3).
-bond("12-13-EpOME",single,3,4).
-bond("12-13-EpOME",single,4,5).
-bond("12-13-EpOME",single,5,6).
-bond("12-13-EpOME",single,6,7).
-bond("12-13-EpOME",single,7,8).
-bond("12-13-EpOME",single,8,9).
-bond("12-13-EpOME",single,9,10).
-bond("12-13-EpOME",double,10,11).
-bond("12-13-EpOME",single,11,12).
-bond("12-13-EpOME",single,12,13).
-bond("12-13-EpOME",single,13,14).
-bond("12-13-EpOME",single,14,15).
-bond("12-13-EpOME",single,15,16).
-bond("12-13-EpOME",single,16,17).
-bond("12-13-EpOME",single,17,18).
-bond("12-13-EpOME",single,18,19).
-bond("12-13-EpOME",double,19,20).
-bond("12-13-EpOME",single,19,21).
-bond("12-13-EpOME",single,8,6).
+% 12_13_EpOME
+atom("12_13_EpOME",1..6,c).
+atom("12_13_EpOME",8..19,c).
+atom("12_13_EpOME",7,o).
+atom("12_13_EpOME",20..21,o).
+bond("12_13_EpOME",single,1,2).
+bond("12_13_EpOME",single,2,3).
+bond("12_13_EpOME",single,3,4).
+bond("12_13_EpOME",single,4,5).
+bond("12_13_EpOME",single,5,6).
+bond("12_13_EpOME",single,6,7).
+bond("12_13_EpOME",single,7,8).
+bond("12_13_EpOME",single,8,9).
+bond("12_13_EpOME",single,9,10).
+bond("12_13_EpOME",double,10,11).
+bond("12_13_EpOME",single,11,12).
+bond("12_13_EpOME",single,12,13).
+bond("12_13_EpOME",single,13,14).
+bond("12_13_EpOME",single,14,15).
+bond("12_13_EpOME",single,15,16).
+bond("12_13_EpOME",single,16,17).
+bond("12_13_EpOME",single,17,18).
+bond("12_13_EpOME",single,18,19).
+bond("12_13_EpOME",double,19,20).
+bond("12_13_EpOME",single,19,21).
+bond("12_13_EpOME",single,8,6).
 
 % 9SHPODE
 atom("9SHPODE",1..18,c).
@@ -164,35 +164,35 @@ bond("9SHPODE",single,18,20).
 bond("9SHPODE",single,10,21).
 bond("9SHPODE",single,21,22).
 
-% 9-10-epoxy-11-hydroxy-12-octdecenoic
-atom("9-10-epoxy-11-hydroxy-12-octdecenoic",1..8,c).
-atom("9-10-epoxy-11-hydroxy-12-octdecenoic",10,c).
-atom("9-10-epoxy-11-hydroxy-12-octdecenoic",12..20,c).
-atom("9-10-epoxy-11-hydroxy-12-octdecenoic",9,o).
-atom("9-10-epoxy-11-hydroxy-12-octdecenoic",11,o).
-atom("9-10-epoxy-11-hydroxy-12-octdecenoic",21..22,o).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,1,2).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,2,3).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,3,4).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,4,5).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,5,6).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",double,6,7).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,7,8).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,8,9).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,8,10).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,10,11).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,11,12).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,12,13).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,13,14).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,14,15).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,15,16).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,16,17).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,17,18).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,18,19).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,19,20).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",double,20,21).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,20,22).
-bond("9-10-epoxy-11-hydroxy-12-octdecenoic",single,12,10).
+% 9_10_epoxy_11_hydroxy_12_octdecenoic
+atom("9_10_epoxy_11_hydroxy_12_octdecenoic",1..8,c).
+atom("9_10_epoxy_11_hydroxy_12_octdecenoic",10,c).
+atom("9_10_epoxy_11_hydroxy_12_octdecenoic",12..20,c).
+atom("9_10_epoxy_11_hydroxy_12_octdecenoic",9,o).
+atom("9_10_epoxy_11_hydroxy_12_octdecenoic",11,o).
+atom("9_10_epoxy_11_hydroxy_12_octdecenoic",21..22,o).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,1,2).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,2,3).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,3,4).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,4,5).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,5,6).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",double,6,7).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,7,8).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,8,9).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,8,10).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,10,11).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,11,12).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,12,13).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,13,14).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,14,15).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,15,16).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,16,17).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,17,18).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,18,19).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,19,20).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",double,20,21).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,20,22).
+bond("9_10_epoxy_11_hydroxy_12_octdecenoic",single,12,10).
 
 % leukotrieneA4
 atom("leukotrieneA4",1..15,c).
@@ -323,7 +323,7 @@ SOURCE - GOAL
 source("linoleate").
 
 % GOAL
-goal(pathway("linoleate","12-hydroxy-13-glutation-OME"))
+goal(pathway("linoleate","12_hydroxy_13_glutation_OME")).
 
 %*
 REACTIONS
@@ -333,14 +333,14 @@ REACTIONS
 % lipoxygenase_rxn
 reaction(lipoxygenase_rxn,"linoleate","13SHPODE").
 
-% epoxidation_L
-reaction(epoxidation_L,"13SHPODE","12-13-EpOME").
+% epoxidation_l
+reaction(epoxidation_l,"13SHPODE","12_13_EpOME").
 
 % rxn_8495
 reaction(rxn_8495,"linoleate","9SHPODE").
 
-% epoxidation_E
-reaction(epoxidation_E,"9SHPODE","9-10-epoxy-11-hydroxy-12-octdecenoic").
+% epoxidation_e
+reaction(epoxidation_e,"9SHPODE","9_10_epoxy_11_hydroxy_12_octdecenoic").
 
-% leukotriene-c4-synthase-rxn
-reaction(leukotriene-c4-synthase-rxn,"leukotrieneA4","leukotrieneC4").
+% leukotriene_c4_synthase_rxn
+reaction(leukotriene_c4_synthase_rxn,"leukotrieneA4","leukotrieneC4").

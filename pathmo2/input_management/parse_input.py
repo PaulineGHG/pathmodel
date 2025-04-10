@@ -1,6 +1,6 @@
 import os.path
 import csv
-from utils import *
+from pathmo2.input_management.utils import *
 
 
 # CONSTANTS ----------------------------------------------------------------------------------------
@@ -80,6 +80,8 @@ def generate_lp_input(run_dir, draw=False):
         reactions_lst = list(csv.DictReader(rf, delimiter='\t'))
         write_chemicals(chemicals_lst, lf)
         write_reactions(reactions_lst, [ch[CHEM] for ch in chemicals_lst], lf)
+        if draw:
+            draw_inputs(chemicals_lst, reactions_lst, run_dir)
 
 
 def write_chemicals(chemicals_lst, lp_f):
@@ -109,23 +111,23 @@ def write_chemicals(chemicals_lst, lp_f):
     source = sources[0][CHEM]
     lp_f.write(f'\n% SOURCE\nsource("{source}").\n')
     for trg in targets:
-        lp_f.write(f'\n% GOAL\ngoal(pathway("{source}","{trg[CHEM]}"))')
+        lp_f.write(f'\n% GOAL\ngoal(pathway("{source}","{trg[CHEM]}")).\n')
 
 
 def write_reactions(reactions_lst, chemicals_ids, lp_f):
-    lp_f.write(f'\n\n%*\nREACTIONS\n{100 * "="}\n*%\n')
+    lp_f.write(f'\n%*\nREACTIONS\n{100 * "="}\n*%\n')
     for rxn in reactions_lst:
         if rxn[REACTANT] not in chemicals_ids:
             print(f'Reactant {rxn[REACTANT]} of reaction {rxn[RXN]} not defined in chemicals.')
         elif rxn[PRODUCT] not in chemicals_ids:
             print(f'Product {rxn[PRODUCT]} of reaction {rxn[RXN]} not defined in chemicals.')
         lp_f.write(f'\n% {rxn[RXN]}\n')
-        lp_f.write(rxn_to_asp(rxn[RXN], rxn[REACTANT], rxn[PRODUCT]) + '\n')
+        lp_f.write(rxn_to_asp(rxn[RXN], rxn[REACTANT], rxn[PRODUCT]))
 
 
-# ==================================================================================================
+def draw_inputs(chemicals_lst, reactions_lst, run_path):
+    chem_smiles = {x[CHEM]: x[SMILES] for x in chemicals_lst}
+    smiles_to_2d_structure(chem_smiles, os.path.join(run_path, OUTPUT_DIR))
+    for rxn in reactions_lst:
+        draw_rxn(chem_smiles[rxn[REACTANT]], chem_smiles[rxn[PRODUCT]], rxn)
 
-RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
-RUN_NAME = 'Oxylipins'
-
-generate_lp_input(os.path.join(RUN_PATH, RUN_NAME))

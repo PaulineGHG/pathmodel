@@ -1,6 +1,6 @@
 Reaction	REACTANT	PRODUCT	ORIGIN	LINKS	EC	TAXON
 lipoxygenase_rxn	linoleate	13SHPODE	BDD	METACYC:LIPOXYGENASE-RXN	1.13.11.12	Laminaria digitata
-epoxidation_L	13SHPODE	12-13-EpOME				Laminaria digitata
+epoxidation_l	13SHPODE	12_13_EpOME				Laminaria digitata
 rxn_8495	linoleate	9SHPODE	BDD	METACYC:RXN-8495	1.13.11.58	Ectocarpus sp7
-epoxidation_E	9SHPODE	9-10-epoxy-11-hydroxy-12-octdecenoic		METACYC:LEUKOTRIENE-C4-SYNTHASE-RXN	4.4.1.20	Ectocarpus sp7
-leukotriene-c4-synthase-rxn	leukotrieneA4	leukotrieneC4	BDD			Mammals
+epoxidation_e	9SHPODE	9_10_epoxy_11_hydroxy_12_octdecenoic		METACYC:LEUKOTRIENE-C4-SYNTHASE-RXN	4.4.1.20	Ectocarpus sp7
+leukotriene_c4_synthase_rxn	leukotrieneA4	leukotrieneC4	BDD			Mammals

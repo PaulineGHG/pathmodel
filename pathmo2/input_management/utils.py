@@ -36,7 +36,6 @@ def simplify_list_with_index(lst):
 
 
 def mol_to_asp(mol_name, mol_code, encoding=INCHI, domain=False):
-    mol_name = mol_name.replace(' ', '_')
     atom_str = 'atom'
     bond_str = 'bond'
     if domain:
@@ -69,7 +68,7 @@ def mol_to_asp(mol_name, mol_code, encoding=INCHI, domain=False):
 
 
 def rxn_to_asp(rxn_name, reactant, product):
-    return f'reaction({rxn_name},"{reactant}","{product}").'
+    return f'reaction({rxn_name},"{reactant}","{product}").\n'
 
 
 def smiles_to_2d_structure(smiles, output):
