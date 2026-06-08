@@ -4,9 +4,9 @@ REACTIONS
 *%
 
 % Reaction1
-reactant(Reaction1,"M1","uni").
-reactant(Reaction1,"M2","uni").
-product(Reaction1,"M3","uni").
+reactant("Reaction1","M1","uni").
+reactant("Reaction1","M2","uni").
+product("Reaction1","M3","uni").
 
 
 %*
