@@ -79,7 +79,7 @@ def generate_transformations(run_path):
     # return reaction_result
 
 
-RDKIT_BONDS = {"simple": Chem.BondType.SINGLE,
+RDKIT_BONDS = {"single": Chem.BondType.SINGLE,
                "double": Chem.BondType.DOUBLE,
                "triple": Chem.BondType.TRIPLE,
                "aromatic": Chem.BondType.AROMATIC}
@@ -168,8 +168,8 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
 
 # ==================================================================================================
 
-RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
-# RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
+# RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
+RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
 RUN_NAME = 'ToyExemple'
 
 

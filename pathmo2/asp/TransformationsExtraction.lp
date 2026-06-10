@@ -81,7 +81,7 @@ productAtomTransformed(Transformation, AtomElement, AtomPosition) :- bondDiffere
 
         % Lien entre un atome identifié et un autre atome dans le réactant
 reactantTransformationCenterBond(Transformation, Atom1Position, Atom2Position, BondOrder) :- reactantAtomTransformed(Transformation, AtomElement, Atom1Position),
-                                                                                             atomMappingReactant(Transformation, Atom1Position, Atom2Position, BondOrder).
+                                                                                             bondMappingReactant(Transformation, Atom1Position, Atom2Position, BondOrder).
         % Symétrie
 reactantTransformationCenterBond(Transformation, Atom2Position, Atom1Position, BondOrder) :- reactantTransformationCenterBond(Transformation, Atom1Position, Atom2Position, BondOrder).
 
@@ -89,7 +89,7 @@ reactantTransformationCenterBond(Transformation, Atom2Position, Atom1Position, B
 
         % Lien entre un atome identifié et un autre atome dans le produit
 productTransformationCenterBond(Transformation, Atom1Position, Atom2Position, BondOrder) :- productAtomTransformed(Transformation, AtomElement, Atom1Position),
-                                                                                            atomMappingProduct(Transformation, Atom1Position, Atom2Position, BondOrder).
+                                                                                            bondMappingProduct(Transformation, Atom1Position, Atom2Position, BondOrder).
         % Symétrie
 productTransformationCenterBond(Transformation, Atom2Position, Atom1Position, BondOrder) :- productTransformationCenterBond(Transformation, Atom1Position, Atom2Position, BondOrder).
 
@@ -101,14 +101,12 @@ productTransformationCenterBond(Transformation, Atom2Position, Atom1Position, Bo
     % 3.3.1 REACTANT
 
 reactantTransformationCenterAtom(Transformation, AtomElement, AtomPosition) :- reactantTransformationCenterBond(Transformation, AtomPosition, Atom2Position, BondOrder),
-                                                                               atom(Reactant, AtomElement, AtomPosition),
-                                                                               reaction(Transformation, Reactant, Product).
+                                                                               atomMappingReactant(Reactant, AtomElement, AtomPosition).
 
     % 3.3.2 PRODUCT
 
 productTransformationCenterAtom(Transformation, AtomElement, AtomPosition) :- productTransformationCenterBond(Transformation, AtomPosition, Atom2Position, BondOrder),
-                                                                              atom(Product, AtomElement, AtomPosition),
-                                                                              reaction(Transformation, Reactant, Product).
+                                                                              atomMappingProduct(Product, AtomElement, AtomPosition).
 
 
 
