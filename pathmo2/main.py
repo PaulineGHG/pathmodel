@@ -2,9 +2,10 @@ import os
 import csv
 import clyngor
 from rdkit import Chem
+from rdkit.Chem.Draw import rdMolDraw2D
 
 from pathmo2.inputs_generation import *
-
+from pathmo2.utils import *
 
 ROOT = os.path.dirname(__file__)
 
@@ -49,9 +50,14 @@ def generate_transformations(run_path):
     print(reactant_transformation_centers)
 
     product_mol, reactant_mol = export_transformations_patterns(product_transformation_centers, reactant_transformation_centers)
-    mol_test = 'CCC1OC1CCCCCC(=O)O'
-    mol_test2 = 'CCCC(O)CCCCCC(=O)O'
-    hypothetical_mol = Chem.MolFromSmiles(mol_test)
+    for r, m in reactant_mol.items():
+        draw_mol(m, os.path.join(run_path, INPUTS_DIR, r[1:-1] + '_reactant_RC'))
+    for r, m in product_mol.items():
+        draw_mol(m, os.path.join(run_path, INPUTS_DIR, r[1:-1] + '_product_RC'))
+
+    source_test = 'C=CC1OC1CCCC(=O)O'
+    target_test = 'C=CC(O)C(CCCC(=O)O)SC(=O)O'
+    hypothetical_mol = Chem.MolFromSmiles(target_test)
     substructure_search(hypothetical_mol, product_mol, reactant_mol)
 
     return result_atoms, transformations, product_transformation_centers, reactant_transformation_centers
@@ -129,12 +135,33 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
             substructure_matches = hypothetical_mol.GetSubstructMatch(pattern)
             for p_idx, m_idx in enumerate(substructure_matches):
                 print(f"Pattern atom {p_idx+1} → Mol atom {m_idx+1}")
-        # for atom in hypothetical_mol.GetAtoms():
-        #     atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-        # Draw.MolToFile(hypothetical_mol, 'hyp_mol.svg', size=(300, 300), imageType='svg')
-        # for atom in pattern.GetAtoms():
-        #     atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-        # Draw.MolToFile(pattern, 'pat_mol.svg', size=(300, 300), imageType='svg')
+    for trans, pattern in product_pattern.items():
+        if hypothetical_mol.HasSubstructMatch(pattern):
+            substructure_matches = hypothetical_mol.GetSubstructMatch(pattern)
+            for p_idx, m_idx in enumerate(substructure_matches):
+                print(f"Pattern atom {p_idx + 1} → Mol atom {m_idx + 1}")
+
+        for atom in hypothetical_mol.GetAtoms():
+            atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+        Draw.MolToFile(hypothetical_mol, 'hyp_mol.svg', size=(300, 300), imageType='svg')
+
+        for atom in pattern.GetAtoms():
+            atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+        Draw.MolToFile(pattern, 'pat_mol.svg', size=(300, 300), imageType='svg')
+
+        hit_bonds = []
+        for bond in pattern.GetBonds():
+            aid1 = substructure_matches[bond.GetBeginAtomIdx()]
+            aid2 = substructure_matches[bond.GetEndAtomIdx()]
+            hit_bonds.append(hypothetical_mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
+        d = rdMolDraw2D.MolDraw2DSVG(500, 500)  # or MolDraw2DCairo to get PNGs
+        rdMolDraw2D.PrepareAndDrawMolecule(d, hypothetical_mol, highlightAtoms=substructure_matches,
+                                           highlightBonds=hit_bonds)
+        d.FinishDrawing()
+        svg = d.GetDrawingText()
+        with open("highlight.svg", "w") as f:
+            f.write(svg)
+
         # from skfp.fingerprints import MACCSFingerprint, PubChemFingerprint
         # fp_maccs = MACCSFingerprint(n_jobs=-1)
         # fp_maccs_count = MACCSFingerprint(count=True, n_jobs=-1)

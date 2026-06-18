@@ -102,6 +102,12 @@ def smiles_to_2d_structure(smiles, output):
             f.write(x)
 
 
+def draw_mol(mol, output):
+    for atom in mol.GetAtoms():
+        atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+    Draw.MolToFile(mol, output + '.svg', size=(300, 300), imageType='svg')
+
+
 def draw_rxn(sub_smiles, prod_smiles, output):
     sub = get_canonical_mol(sub_smiles)
     prod = get_canonical_mol(prod_smiles)
