@@ -176,10 +176,3 @@ def draw_rxn(rxn, output):
 
 # --------------------------------------------------------------------------------------------------
 
-RUN_NAME = 'OXY'
-RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
-SOURCE = {'linoleate': 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'}
-TARGET = {'12_hydroxy_13_glutation_OME': 'CCCCCC(SCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(O)C/C=C/CCCCCCCC(=O)O'}
-MC_REF_RXN = ['LEUKOTRIENE-C4-SYNTHASE-RXN', 'RXN-8495', 'LIPOXYGENASE-RXN']
-
-# generate_input(RUN_NAME, RUN_PATH, SOURCE, TARGET, MC_REF_RXN)

@@ -6,6 +6,7 @@ from rdkit.Chem.Draw import rdMolDraw2D
 
 from pathmo2.inputs_generation import *
 from pathmo2.utils import *
+from pathmo2.rxn_mapper_mapping import generate_input_transformations
 
 ROOT = os.path.dirname(__file__)
 
@@ -154,7 +155,7 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
             aid1 = substructure_matches[bond.GetBeginAtomIdx()]
             aid2 = substructure_matches[bond.GetEndAtomIdx()]
             hit_bonds.append(hypothetical_mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
-        d = rdMolDraw2D.MolDraw2DSVG(500, 500)  # or MolDraw2DCairo to get PNGs
+        d = rdMolDraw2D.MolDraw2DSVG(500, 500)
         rdMolDraw2D.PrepareAndDrawMolecule(d, hypothetical_mol, highlightAtoms=substructure_matches,
                                            highlightBonds=hit_bonds)
         d.FinishDrawing()
@@ -195,12 +196,25 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
 
 # ==================================================================================================
 
-# RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
-RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
+RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
+# RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
 RUN_NAME = 'ToyExemple'
 
+SOURCE = {'Source': 'C=CC1OC1CCCC(=O)O'}
+TARGET = {'Target': 'C=CC(O)C(CCCC(=O)O)SC(=O)O'}
+MC_REF_RXN = []
+MAPPINGS_REF = {'Reaction1': (['C(=O)(O)CC1OC1/C=C/C', 'C(S)(=O)O'],
+                              ['C(=O)(O)CC(SC(O)=O)C(O)/C=C/C'])}
 
-# generate_lp_input(os.path.join(RUN_PATH, RUN_NAME), True)
-generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
 
+generate_input_transformations(MAPPINGS_REF)
+
+# generate_input(RUN_NAME, RUN_PATH, SOURCE, TARGET, MC_REF_RXN)
+# generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
+
+
+# SOURCE = {'linoleate': 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'}
+# TARGET = {'12_hydroxy_13_glutation_OME':
+#           'CCCCCC(SCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(O)C/C=C/CCCCCCCC(=O)O'}
+# MC_REF_RXN = ['LEUKOTRIENE-C4-SYNTHASE-RXN', 'RXN-8495', 'LIPOXYGENASE-RXN']
 

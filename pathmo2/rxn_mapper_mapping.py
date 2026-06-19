@@ -25,13 +25,11 @@ def extract_rxn(rxn_input):
     return r_dict
 
 
-def generate_input_transformations(chem_input, rxn_input):
-    c_dict = extract_chemicals(chem_input)
-    r_dict = extract_rxn(rxn_input)
+def generate_input_transformations(r_dict):
     rxn_smiles = []
     for r_id, r in r_dict.items():
-        reactant_smiles = c_dict[r[0]]
-        product_smiles = c_dict[r[1]]
+        reactant_smiles = '.'.join(r[0])
+        product_smiles = '.'.join(r[1])
         rxn_smiles.append(f'{reactant_smiles}>>{product_smiles}')
     results = rxn_mapper.get_attention_guided_atom_maps(rxn_smiles)
     i = 0
@@ -43,12 +41,3 @@ def generate_input_transformations(chem_input, rxn_input):
         d2d.DrawReaction(rxn)
         png = d2d.GetDrawingText()
         open('rxn_mapped' + str(i) + '.png', 'wb+').write(png)
-
-
-
-
-C_FILE = '../../Files/Oxylipins/Inputs/Chemicals_input.tsv'
-R_FILE = '../../Files/Oxylipins/Inputs/Reactions_input.tsv'
-
-
-generate_input_transformations(C_FILE, R_FILE)
