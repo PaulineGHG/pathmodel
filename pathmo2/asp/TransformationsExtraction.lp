@@ -114,11 +114,15 @@ productTransformationCenterAtom(Transformation, AtomElement, AtomPosition) :- pr
 %#show atomRemoval/3.
 %#show bondAddition/4.
 %#show bondRemoval/4.
+
 #show atomDifference/4.
 #show bondDifference/5.
+
 #show reactantAtomTransformed/3.
 #show productAtomTransformed/3.
+
 #show reactantTransformationCenterBond/4.
-#show productTransformationCenterBond/4.
 #show reactantTransformationCenterAtom/3.
+
+#show productTransformationCenterBond/4.
 #show productTransformationCenterAtom/3.

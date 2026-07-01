@@ -56,9 +56,9 @@ def generate_transformations(run_path):
     for r, m in product_mol.items():
         draw_mol(m, os.path.join(run_path, INPUTS_DIR, r[1:-1] + '_product_RC'))
 
-    source_test = 'C=CC1OC1CCCC(=O)O'
+    source_test = 'C=CC1OC1CCCC(=O)O' + '.' + 'C(S)(=O)O'
     target_test = 'C=CC(O)C(CCCC(=O)O)SC(=O)O'
-    hypothetical_mol = Chem.MolFromSmiles(target_test)
+    hypothetical_mol = Chem.MolFromSmiles(source_test)
     substructure_search(hypothetical_mol, product_mol, reactant_mol)
 
     return result_atoms, transformations, product_transformation_centers, reactant_transformation_centers
@@ -136,32 +136,55 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
             substructure_matches = hypothetical_mol.GetSubstructMatch(pattern)
             for p_idx, m_idx in enumerate(substructure_matches):
                 print(f"Pattern atom {p_idx+1} → Mol atom {m_idx+1}")
+
+            for atom in hypothetical_mol.GetAtoms():
+                atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+            Draw.MolToFile(hypothetical_mol, 'hyp_mol_r.svg', size=(300, 300), imageType='svg')
+
+            for atom in pattern.GetAtoms():
+                atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+            Draw.MolToFile(pattern, 'pat_mol_r.svg', size=(300, 300), imageType='svg')
+
+            hit_bonds = []
+            for bond in pattern.GetBonds():
+                aid1 = substructure_matches[bond.GetBeginAtomIdx()]
+                aid2 = substructure_matches[bond.GetEndAtomIdx()]
+                hit_bonds.append(hypothetical_mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
+            d = rdMolDraw2D.MolDraw2DSVG(500, 500)
+            rdMolDraw2D.PrepareAndDrawMolecule(d, hypothetical_mol, highlightAtoms=substructure_matches,
+                                               highlightBonds=hit_bonds)
+            d.FinishDrawing()
+            svg = d.GetDrawingText()
+            with open("highlight_r.svg", "w") as f:
+                f.write(svg)
+
+
     for trans, pattern in product_pattern.items():
         if hypothetical_mol.HasSubstructMatch(pattern):
             substructure_matches = hypothetical_mol.GetSubstructMatch(pattern)
             for p_idx, m_idx in enumerate(substructure_matches):
                 print(f"Pattern atom {p_idx + 1} → Mol atom {m_idx + 1}")
 
-        for atom in hypothetical_mol.GetAtoms():
-            atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-        Draw.MolToFile(hypothetical_mol, 'hyp_mol.svg', size=(300, 300), imageType='svg')
+            for atom in hypothetical_mol.GetAtoms():
+                atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+            Draw.MolToFile(hypothetical_mol, 'hyp_mol_p.svg', size=(300, 300), imageType='svg')
 
-        for atom in pattern.GetAtoms():
-            atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-        Draw.MolToFile(pattern, 'pat_mol.svg', size=(300, 300), imageType='svg')
+            for atom in pattern.GetAtoms():
+                atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+            Draw.MolToFile(pattern, 'pat_mol_p.svg', size=(300, 300), imageType='svg')
 
-        hit_bonds = []
-        for bond in pattern.GetBonds():
-            aid1 = substructure_matches[bond.GetBeginAtomIdx()]
-            aid2 = substructure_matches[bond.GetEndAtomIdx()]
-            hit_bonds.append(hypothetical_mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
-        d = rdMolDraw2D.MolDraw2DSVG(500, 500)
-        rdMolDraw2D.PrepareAndDrawMolecule(d, hypothetical_mol, highlightAtoms=substructure_matches,
-                                           highlightBonds=hit_bonds)
-        d.FinishDrawing()
-        svg = d.GetDrawingText()
-        with open("highlight.svg", "w") as f:
-            f.write(svg)
+            hit_bonds = []
+            for bond in pattern.GetBonds():
+                aid1 = substructure_matches[bond.GetBeginAtomIdx()]
+                aid2 = substructure_matches[bond.GetEndAtomIdx()]
+                hit_bonds.append(hypothetical_mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
+            d = rdMolDraw2D.MolDraw2DSVG(500, 500)
+            rdMolDraw2D.PrepareAndDrawMolecule(d, hypothetical_mol, highlightAtoms=substructure_matches,
+                                               highlightBonds=hit_bonds)
+            d.FinishDrawing()
+            svg = d.GetDrawingText()
+            with open("highlight_p.svg", "w") as f:
+                f.write(svg)
 
         # from skfp.fingerprints import MACCSFingerprint, PubChemFingerprint
         # fp_maccs = MACCSFingerprint(n_jobs=-1)
@@ -196,21 +219,23 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
 
 # ==================================================================================================
 
-RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
-# RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
+# RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
+RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
 RUN_NAME = 'ToyExemple'
 
 SOURCE = {'Source': 'C=CC1OC1CCCC(=O)O'}
 TARGET = {'Target': 'C=CC(O)C(CCCC(=O)O)SC(=O)O'}
 MC_REF_RXN = []
 MAPPINGS_REF = {'Reaction1': (['C(=O)(O)CC1OC1/C=C/C', 'C(S)(=O)O'],
-                              ['C(=O)(O)CC(SC(O)=O)C(O)/C=C/C'])}
+                              ['C(=O)(O)CC(SC(O)=O)C(O)/C=C/C']),
+                'LEUKOTRIENE-C4-SYNTHASE-RXN': (['CCCCC\\C=C/C\\C=C/C=C/C=C/[C@@H]1(O[C@@H]1CCCC(=O)[O-])', 'C(S)[C@@H](C(NCC([O-])=O)=O)NC(=O)CC[C@H]([NH3+])C([O-])=O'],
+                                                ['CCCCC\\C=C/C\\C=C/C=C/C=C/[C@@H](SC[C@@H](C(=O)NCC([O-])=O)NC(CC[C@@H](C(=O)[O-])[NH3+])=O)[C@H](CCCC([O-])=O)O'])}
 
 
-generate_input_transformations(MAPPINGS_REF)
+# generate_input_transformations(MAPPINGS_REF)
 
 # generate_input(RUN_NAME, RUN_PATH, SOURCE, TARGET, MC_REF_RXN)
-# generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
+generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
 
 
 # SOURCE = {'linoleate': 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'}
