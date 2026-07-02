@@ -101,19 +101,14 @@ productTransformationCenterBond(Transformation, Atom2Position, Atom1Position, Bo
     % 3.3.1 REACTANT
 
 reactantTransformationCenterAtom(Transformation, AtomElement, AtomPosition) :- reactantTransformationCenterBond(Transformation, AtomPosition, Atom2Position, BondOrder),
-                                                                               atomMappingReactant(Reactant, AtomElement, AtomPosition).
+                                                                               atomMappingReactant(Transformation, AtomElement, AtomPosition).
 
     % 3.3.2 PRODUCT
 
 productTransformationCenterAtom(Transformation, AtomElement, AtomPosition) :- productTransformationCenterBond(Transformation, AtomPosition, Atom2Position, BondOrder),
-                                                                              atomMappingProduct(Product, AtomElement, AtomPosition).
+                                                                              atomMappingProduct(Transformation, AtomElement, AtomPosition).
 
 
-
-%#show atomAddition/3.
-%#show atomRemoval/3.
-%#show bondAddition/4.
-%#show bondRemoval/4.
 
 #show atomDifference/4.
 #show bondDifference/5.

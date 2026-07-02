@@ -78,9 +78,9 @@ def mol_to_asp(mol_name, mol_code, encoding=INCHI, domain=False):
 
 def rxn_to_asp(rxn, reactants, products, direction, lp_f):
     for r in reactants:
-        lp_f.write(f'reactant({rxn},"{r}","{direction}").\n')
+        lp_f.write(f'reactant("{rxn}","{r}","{direction}").\n')
     for p in products:
-        lp_f.write(f'product({rxn},"{p}","{direction}").\n')
+        lp_f.write(f'product("{rxn}","{p}","{direction}").\n')
 
 
 def smiles_to_2d_structure(smiles, output):

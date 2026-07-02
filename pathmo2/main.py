@@ -42,7 +42,8 @@ def generate_transformations(run_path):
                 product_transformation_centers[atom[1][0]] = []
             product_transformation_centers[atom[1][0]].append(atom)
 
-    print(result_atoms)
+    for atom in result_atoms:
+        print(atom)
     print(transformations)
     print(product_transformation_centers)
     print(reactant_transformation_centers)
@@ -97,12 +98,18 @@ def export_transformations_patterns(product_transformation_centers, reactant_tra
         trans_bonds = [x for x in trans_lst if x[0] == 'productTransformationCenterBond']
         mol = asp_to_mol(trans_atoms, trans_bonds)
         product_mol[trans_name] = mol
+        # for atom in mol.GetAtoms():
+        #     atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+        # Draw.MolToFile(mol, f'{trans_name}_reac_RC.svg', size=(300, 300), imageType='svg')
 
     for trans_name, trans_lst in reactant_transformation_centers.items():
         trans_atoms = [x for x in trans_lst if x[0] == 'reactantTransformationCenterAtom']
         trans_bonds = [x for x in trans_lst if x[0] == 'reactantTransformationCenterBond']
         mol = asp_to_mol(trans_atoms, trans_bonds)
         reactant_mol[trans_name] = mol
+        # for atom in mol.GetAtoms():
+        #     atom.SetProp('atomNote', str(atom.GetIdx() + 1))
+        # Draw.MolToFile(mol, f'{trans_name}_prod_RC.svg', size=(300, 300), imageType='svg')
     return product_mol, reactant_mol
 
 
@@ -138,10 +145,6 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
                 atom.SetProp('atomNote', str(atom.GetIdx() + 1))
             Draw.MolToFile(hypothetical_mol, 'hyp_mol_r.svg', size=(300, 300), imageType='svg')
 
-            for atom in pattern.GetAtoms():
-                atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-            Draw.MolToFile(pattern, 'pat_mol_r.svg', size=(300, 300), imageType='svg')
-
             hit_bonds = []
             for bond in pattern.GetBonds():
                 aid1 = substructure_matches[bond.GetBeginAtomIdx()]
@@ -155,7 +158,6 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
             with open("highlight_r.svg", "w") as f:
                 f.write(svg)
 
-
     for trans, pattern in product_pattern.items():
         if hypothetical_mol.HasSubstructMatch(pattern):
             substructure_matches = hypothetical_mol.GetSubstructMatch(pattern)
@@ -165,10 +167,6 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
             for atom in hypothetical_mol.GetAtoms():
                 atom.SetProp('atomNote', str(atom.GetIdx() + 1))
             Draw.MolToFile(hypothetical_mol, 'hyp_mol_p.svg', size=(300, 300), imageType='svg')
-
-            for atom in pattern.GetAtoms():
-                atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-            Draw.MolToFile(pattern, 'pat_mol_p.svg', size=(300, 300), imageType='svg')
 
             hit_bonds = []
             for bond in pattern.GetBonds():
@@ -232,8 +230,8 @@ SMILES_TO_MAP_INPUT = {'Reaction1': (['C(=O)(O)CC1OC1/C=C/C', 'C(S)(=O)O'],
                        'Reaction2': (['CCC(/C=C\CC(=O)O)OO'], ['CCC(O)O/C=C\CC(=O)O'])}
 
 
-generate_input(RUN_NAME, RUN_PATH, SOURCE, TARGET, smiles_to_map=SMILES_TO_MAP_INPUT)
-# generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
+# generate_input(RUN_NAME, RUN_PATH, SOURCE, TARGET, smiles_to_map=SMILES_TO_MAP_INPUT)
+generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
 
 
 # SOURCE = {'linoleate': 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'}

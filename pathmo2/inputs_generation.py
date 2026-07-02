@@ -180,14 +180,14 @@ def write_mappings(mappings_data, mapping_dir, lp_f):
                 idx = atom.GetIdx()
                 symbol = atom.GetSymbol()
                 amap = atom.GetAtomMapNum()
-                lp_f.write(f'atomMappingReactant("{rxn_id}","{symbol}",{amap}).\n')
+                lp_f.write(f'atomMappingReactant("{rxn_id}",{symbol.lower()},{amap}).\n')
                 asso_if[idx] = amap
             for bond in r.GetBonds():
                 a1 = bond.GetBeginAtomIdx()
                 a2 = bond.GetEndAtomIdx()
                 bond_type = str(bond.GetBondType()).lower()
                 lp_f.write(
-                    f'bondMappingReactant("{rxn_id}","{asso_if[a1]}","{asso_if[a2]}","{bond_type}").\n')
+                    f'bondMappingReactant("{rxn_id}",{asso_if[a1]},{asso_if[a2]},{bond_type}).\n')
 
         for p in products:
             asso_if = dict()
@@ -195,14 +195,14 @@ def write_mappings(mappings_data, mapping_dir, lp_f):
                 idx = atom.GetIdx()
                 symbol = atom.GetSymbol()
                 amap = atom.GetAtomMapNum()
-                lp_f.write(f'atomMappingProduct("{rxn_id}","{symbol}",{amap}).\n')
+                lp_f.write(f'atomMappingProduct("{rxn_id}",{symbol.lower()},{amap}).\n')
                 asso_if[idx] = amap
             for bond in p.GetBonds():
                 a1 = bond.GetBeginAtomIdx()
                 a2 = bond.GetEndAtomIdx()
                 bond_type = str(bond.GetBondType()).lower()
                 lp_f.write(
-                    f'bondMappingProduct("{rxn_id}","{asso_if[a1]}","{asso_if[a2]}","{bond_type}").\n')
+                    f'bondMappingProduct("{rxn_id}",{asso_if[a1]},{asso_if[a2]},{bond_type}).\n')
 
         draw_rxn(rxn, os.path.join(mapping_dir, rxn_id + '.png'))
 
