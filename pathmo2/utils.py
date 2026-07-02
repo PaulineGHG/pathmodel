@@ -9,6 +9,10 @@ ATOM_CORRESP = {'C': 'c',
                 'O': 'o',
                 'S': 's',
                 'N': 'n'}
+RDKIT_BONDS = {"single": Chem.BondType.SINGLE,
+               "double": Chem.BondType.DOUBLE,
+               "triple": Chem.BondType.TRIPLE,
+               "aromatic": Chem.BondType.AROMATIC}
 
 
 def get_canonical_mol(smiles):
@@ -120,3 +124,22 @@ def draw_rxn(sub_smiles, prod_smiles, output):
         f.write(x)
 
 
+def asp_to_mol(atoms, bonds):
+    re_numbering = {}
+    mol = Chem.RWMol()
+    mol_atom_pos = 0
+    for asp_atom in atoms:
+        atom_symbol = asp_atom[1][1].upper()
+        atom_position = asp_atom[1][2]
+        re_numbering[atom_position] = mol_atom_pos
+        mol.AddAtom(Chem.Atom(atom_symbol))
+        mol_atom_pos += 1
+    for asp_atom in bonds:
+        bond_atom1 = re_numbering[asp_atom[1][1]]
+        bond_atom2 = re_numbering[asp_atom[1][2]]
+        bond_order = RDKIT_BONDS[asp_atom[1][3]]
+        if mol.GetBondBetweenAtoms(bond_atom1, bond_atom2) is None:
+            mol.AddBond(bond_atom1, bond_atom2, bond_order)
+    mol = mol.GetMol()
+    Chem.SanitizeMol(mol)
+    return mol
