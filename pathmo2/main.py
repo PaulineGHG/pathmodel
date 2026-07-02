@@ -219,23 +219,24 @@ def substructure_search(hypothetical_mol, product_pattern, reactant_pattern):
 
 # ==================================================================================================
 
-# RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
-RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
+RUN_PATH = '/home/phamongi/Documents/Dev/pathmodel/Files'
+# RUN_PATH = 'C:\\Users\\Octav\\PycharmProjects\\pathmodel\\Files'
 RUN_NAME = 'ToyExemple'
 
 SOURCE = {'Source': 'C=CC1OC1CCCC(=O)O'}
 TARGET = {'Target': 'C=CC(O)C(CCCC(=O)O)SC(=O)O'}
+AVAILABLE_METABOLITES = {}
 MC_REF_RXN = []
+SMARTS = {'Mapping1': '[CH3:1][C@H:3]1([O:5][CH2:2]1).[OH2:4]>>[CH2:1]=[CH:3][CH3:2].[O:4]=[O:5]',
+          'Mapping2': '[C-:2]#[O+:1].[OH2:1]>>[C:2](=[O:1])=[O:1]'}
 MAPPINGS_REF = {'Reaction1': (['C(=O)(O)CC1OC1/C=C/C', 'C(S)(=O)O'],
-                              ['C(=O)(O)CC(SC(O)=O)C(O)/C=C/C']),
-                'LEUKOTRIENE-C4-SYNTHASE-RXN': (['CCCCC\\C=C/C\\C=C/C=C/C=C/[C@@H]1(O[C@@H]1CCCC(=O)[O-])', 'C(S)[C@@H](C(NCC([O-])=O)=O)NC(=O)CC[C@H]([NH3+])C([O-])=O'],
-                                                ['CCCCC\\C=C/C\\C=C/C=C/C=C/[C@@H](SC[C@@H](C(=O)NCC([O-])=O)NC(CC[C@@H](C(=O)[O-])[NH3+])=O)[C@H](CCCC([O-])=O)O'])}
+                              ['C(=O)(O)CC(SC(O)=O)C(O)/C=C/C'])}
 
 
 # generate_input_transformations(MAPPINGS_REF)
 
-# generate_input(RUN_NAME, RUN_PATH, SOURCE, TARGET, MC_REF_RXN)
-generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
+generate_input(RUN_NAME, RUN_PATH, SOURCE, TARGET, MC_REF_RXN)
+# generate_transformations(os.path.join(RUN_PATH, RUN_NAME))
 
 
 # SOURCE = {'linoleate': 'CCCCC\C=C/C\C=C/CCCCCCCC([O-])=O'}

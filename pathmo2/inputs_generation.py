@@ -2,11 +2,11 @@
 # --------------------------------------------------------------------------------------------------
 import json
 import os.path
+from typing import List, Dict, Tuple
 from utils import mol_to_asp, rxn_to_asp
 
 from rdkit.Chem import AllChem
 from rdkit.Chem import Draw
-
 
 # CONSTANTS
 # --------------------------------------------------------------------------------------------------
@@ -23,7 +23,9 @@ OUTPUTS_DIR = 'Outputs'
 # --------------------------------------------------------------------------------------------------
 
 # Main Function
-def generate_input(run_name, output_path, source, target, metacyc_ref_reactions):
+def generate_input(run_name: str, output_path: str, source: Dict[str, str], target: Dict[str, str],
+                   metacyc_ref_reactions: List[str] = None, mapping_smarts: Dict[str, str] = None,
+                   smiles_to_map: Dict[str, Tuple[List[str], List[str]]] = None):
 
     # MANAGE DIRECTORIES
     run_path = os.path.join(output_path, run_name)
@@ -39,7 +41,8 @@ def generate_input(run_name, output_path, source, target, metacyc_ref_reactions)
     # MANAGE FILES
     reactions_file = os.path.join(run_path, INPUTS_DIR, 'Reactions_references.tsv')
     with open(reactions_file, 'w') as f_rxn:
-        f_rxn.write('\t'.join(['DataBase', 'Rxn ID', 'Reactants', 'Products', 'Direction', 'Mapping SMARTS']))
+        f_rxn.write('\t'.join(
+            ['DataBase', 'Rxn ID', 'Reactants', 'Products', 'Direction', 'Mapping SMARTS']))
     input_lp_file = os.path.join(run_path, INPUTS_DIR, 'input.lp')
 
     # EXTRACT DATA
@@ -47,7 +50,11 @@ def generate_input(run_name, output_path, source, target, metacyc_ref_reactions)
     cpd_data = {}
     map_data = {}
     if metacyc_ref_reactions:
-        rxn_data, cpd_data, map_data = import_metacyc(metacyc_ref_reactions, rxn_data, cpd_data, map_data)
+        rxn_data, cpd_data, map_data = import_metacyc(metacyc_ref_reactions, rxn_data, cpd_data,
+                                                      map_data)
+    if mapping_smarts:
+        rxn_data, cpd_data, map_data = import_from_smarts(mapping_smarts, rxn_data, cpd_data,
+                                                          map_data)
 
     # WRITE INPUT FILES
     with open(input_lp_file, 'w') as flp:
@@ -71,16 +78,16 @@ def import_metacyc(metacyc_ref_reactions, rxn_data, cpd_data, map_data):
             if data['direction'] == 'LEFT-TO-RIGHT':
                 reactants = data['left']
                 products = data['right']
-                direction = 'uni'
+                reversible = False
             if data['direction'] == 'RIGHT-TO-LEFT':
                 reactants = data['right']
                 products = data['left']
-                direction = 'uni'
+                reversible = False
             if data['direction'] == 'REVERSIBLE':
                 reactants = data['left']
                 products = data['right']
-                direction = 'bi'
-            rxn_data[rxn] = (reactants, products, direction, 'MetaCyc')
+                reversible = True
+            rxn_data[rxn] = (reactants, products, str(reversible), 'MetaCyc')
     # EXTRACT CPD DATA
     all_cpd = set()
     for rxn, data in rxn_data.items():
@@ -101,6 +108,30 @@ def import_metacyc(metacyc_ref_reactions, rxn_data, cpd_data, map_data):
     return rxn_data, cpd_data, map_data
 
 
+def import_from_smarts(mapping_smarts, rxn_data, cpd_data, map_data):
+    for m_id, smarts in mapping_smarts.items():
+        map_data[m_id] = smarts
+        smarts = smarts.split('>>')
+        reactants_smiles = smarts[0].split('.')
+        products_smiles = smarts[1].split('.')
+        reactants_ids = []
+        products_ids = []
+        i = 1
+        for reac_smile in reactants_smiles:
+            reac_id = f'{m_id}_reactant{i}'
+            i += 1
+            cpd_data[reac_id] = reac_smile
+            reactants_ids.append(reac_id)
+        i = 1
+        for prod_smile in products_smiles:
+            prod_id = f'{m_id}_product{i}'
+            i += 1
+            cpd_data[prod_id] = prod_smile
+            products_ids.append(prod_id)
+        rxn_data[m_id] = (reactants_ids, products_ids, str(False), 'MappingSMARTS')
+    return rxn_data, cpd_data, map_data
+
+
 # LP writing functions
 def write_chemicals(source, target, rxn_chemicals_lst, lp_f):
     lp_f.write(f'\n%*\nCHEMICALS\n{100 * "="}\n*%\n')
@@ -110,7 +141,7 @@ def write_chemicals(source, target, rxn_chemicals_lst, lp_f):
         for atom in asp_atoms:
             lp_f.write(f'{atom}\n')
 
-    lp_f.write(f'\n%*\nSOURCE - GOAL\n{100*"="}\n*%\n')
+    lp_f.write(f'\n%*\nSOURCE - GOAL\n{100 * "="}\n*%\n')
     source = list(source)[0]
     lp_f.write(f'\n% SOURCE\nsource("{source}").\n')
     lp_f.write(f'\n% GOAL\ngoal(pathway("{source}","{list(target)[0]}")).\n')
@@ -146,7 +177,8 @@ def write_mappings(mappings_data, mapping_dir, lp_f):
                 a1 = bond.GetBeginAtomIdx()
                 a2 = bond.GetEndAtomIdx()
                 bond_type = str(bond.GetBondType()).lower()
-                lp_f.write(f'bondMappingReactant("{rxn_id}","{asso_if[a1]}","{asso_if[a2]}","{bond_type}").\n')
+                lp_f.write(
+                    f'bondMappingReactant("{rxn_id}","{asso_if[a1]}","{asso_if[a2]}","{bond_type}").\n')
 
         for p in products:
             asso_if = dict()
@@ -173,6 +205,4 @@ def draw_rxn(rxn, output):
     png = d2d.GetDrawingText()
     open(output, 'wb+').write(png)
 
-
 # --------------------------------------------------------------------------------------------------
-
