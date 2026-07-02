@@ -32,12 +32,11 @@ def generate_input_transformations(r_dict):
         product_smiles = '.'.join(r[1])
         rxn_smiles.append(f'{reactant_smiles}>>{product_smiles}')
     results = rxn_mapper.get_attention_guided_atom_maps(rxn_smiles)
-    i = 0
-    for res in results:
-        i += 1
-        mapped_rxn = res['mapped_rxn']
-        rxn = AllChem.ReactionFromSmarts(mapped_rxn)
-        d2d = Draw.MolDraw2DCairo(1600, 600)
-        d2d.DrawReaction(rxn)
-        png = d2d.GetDrawingText()
-        open('rxn_mapped' + str(i) + '.png', 'wb+').write(png)
+    mapping_smarts = {list(r_dict.keys())[i]: results[i]['mapped_rxn'] for i in range(len(results))}
+    # for r_id, res in mapping_smarts.items():
+    #     rxn = AllChem.ReactionFromSmarts(res)
+    #     d2d = Draw.MolDraw2DCairo(1600, 600)
+    #     d2d.DrawReaction(rxn)
+    #     png = d2d.GetDrawingText()
+    #     open(r_id + '.png', 'wb+').write(png)
+    return mapping_smarts

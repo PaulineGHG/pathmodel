@@ -4,6 +4,7 @@ import json
 import os.path
 from typing import List, Dict, Tuple
 from utils import mol_to_asp, rxn_to_asp
+from rxn_mapper_mapping import generate_input_transformations
 
 from rdkit.Chem import AllChem
 from rdkit.Chem import Draw
@@ -55,6 +56,9 @@ def generate_input(run_name: str, output_path: str, source: Dict[str, str], targ
     if mapping_smarts:
         rxn_data, cpd_data, map_data = import_from_smarts(mapping_smarts, rxn_data, cpd_data,
                                                           map_data)
+    if smiles_to_map:
+        rxn_data, cpd_data, map_data = import_from_smiles_to_map(smiles_to_map, rxn_data, cpd_data,
+                                                                 map_data)
 
     # WRITE INPUT FILES
     with open(input_lp_file, 'w') as flp:
@@ -130,6 +134,11 @@ def import_from_smarts(mapping_smarts, rxn_data, cpd_data, map_data):
             products_ids.append(prod_id)
         rxn_data[m_id] = (reactants_ids, products_ids, str(False), 'MappingSMARTS')
     return rxn_data, cpd_data, map_data
+
+
+def import_from_smiles_to_map(smiles_to_map, rxn_data, cpd_data, map_data):
+    mapping_smarts = generate_input_transformations(smiles_to_map)
+    return import_from_smarts(mapping_smarts, rxn_data, cpd_data, map_data)
 
 
 # LP writing functions
