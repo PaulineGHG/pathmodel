@@ -50,9 +50,9 @@ def generate_transformations(run_path):
 
     product_mol, reactant_mol = export_transformations_patterns(product_transformation_centers, reactant_transformation_centers)
     for r, m in reactant_mol.items():
-        draw_mol(m, os.path.join(run_path, INPUTS_DIR, r[1:-1] + '_reactant_RC'))
+        draw_mol(m, os.path.join(run_path, INPUTS_DIR, 'ReactionCenters', r[1:-1] + '_reactant_RC'))
     for r, m in product_mol.items():
-        draw_mol(m, os.path.join(run_path, INPUTS_DIR, r[1:-1] + '_product_RC'))
+        draw_mol(m, os.path.join(run_path, INPUTS_DIR, 'ReactionCenters', r[1:-1] + '_product_RC'))
 
     source_test = 'C=CC1OC1CCCC(=O)O' + '.' + 'C(S)(=O)O'
     target_test = 'C=CC(O)C(CCCC(=O)O)SC(=O)O'
@@ -98,18 +98,13 @@ def export_transformations_patterns(product_transformation_centers, reactant_tra
         trans_bonds = [x for x in trans_lst if x[0] == 'productTransformationCenterBond']
         mol = asp_to_mol(trans_atoms, trans_bonds)
         product_mol[trans_name] = mol
-        # for atom in mol.GetAtoms():
-        #     atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-        # Draw.MolToFile(mol, f'{trans_name}_reac_RC.svg', size=(300, 300), imageType='svg')
 
     for trans_name, trans_lst in reactant_transformation_centers.items():
         trans_atoms = [x for x in trans_lst if x[0] == 'reactantTransformationCenterAtom']
         trans_bonds = [x for x in trans_lst if x[0] == 'reactantTransformationCenterBond']
         mol = asp_to_mol(trans_atoms, trans_bonds)
         reactant_mol[trans_name] = mol
-        # for atom in mol.GetAtoms():
-        #     atom.SetProp('atomNote', str(atom.GetIdx() + 1))
-        # Draw.MolToFile(mol, f'{trans_name}_prod_RC.svg', size=(300, 300), imageType='svg')
+
     return product_mol, reactant_mol
 
 

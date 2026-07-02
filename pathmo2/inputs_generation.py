@@ -31,10 +31,11 @@ def generate_input(run_name: str, output_path: str, source: Dict[str, str], targ
     # MANAGE DIRECTORIES
     run_path = os.path.join(output_path, run_name)
     mapping_dir = os.path.join(run_path, INPUTS_DIR, 'Mappings')
+    rc_dir = os.path.join(run_path, INPUTS_DIR, 'ReactionCenters')
     directories = [run_path,
                    os.path.join(run_path, INPUTS_DIR),
                    os.path.join(run_path, OUTPUTS_DIR),
-                   mapping_dir]
+                   mapping_dir, rc_dir]
     for directory in directories:
         if not os.path.exists(directory):
             os.mkdir(directory)
